@@ -13,10 +13,11 @@ fig = px.scatter(vehicles_df, x='model_year',
 fig.update_yaxes(range=[5000, 200000])
 st.plotly_chart(fig)
 
-show_histogram = st.checkbox('Show Histogram')
+show_histogram = st.checkbox('Show Histogram (Sorted)')
 
 if show_histogram:
-    fig = px.histogram(vehicles_df, x='type', title = 'Stock of Car Type', labels={'type':'Car Type'})
+    sorted_df = vehicles_df.sort_values(by='type')
+    fig = px.histogram(sorted_df, x='type', title = 'Stock of Car Type', labels={'type':'Car Type'})
     fig.update_layout(yaxis_title = 'Amount in Stock')
     st.plotly_chart(fig)
     
